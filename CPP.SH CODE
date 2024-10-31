@@ -1,0 +1,70 @@
+/*
+*  Filename: 
+*  Date: 
+*  Author: Mark Makris
+*  Description:
+*/
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+int romanCharValue(char r);
+int convertRomanToInt(string s);
+
+int main(){
+   string word;
+   while (true) { 
+    cout << "Enter Roman number or Q to quit: ";
+    getline(cin, word);
+    if (word =="Q") 
+    { 
+        break;
+    } 
+    int final=convertRomanToInt(word);
+    cout << word<< " = "<< final << endl;
+   }
+   return 0;
+}
+int romanCharValue(char r){
+    if(r == 'I') {
+        return 1;
+        }
+        if (r == 'V') {
+            return 5;
+        }
+        if (r == 'X'){
+            return 10;
+        }
+        if(r == 'L'){
+            return 50;
+        }
+        if(r == 'C'){
+            return 100;
+        }
+        if(r == 'D'){
+            return 500;
+        }
+        if(r == 'M'){
+            return 1000;
+}
+
+}
+int convertRomanToInt (string s){
+    double total = 0;
+    int previousValue = 0;
+    for (int i = s.length()-1; i >= 0; i--)
+    {
+    int current = romanCharValue(s[i]);
+    if(current >= previousValue){
+        total += current;
+    }
+    else {
+        total -= current;
+    }
+    previousValue = current;
+}
+    return total;
+}
